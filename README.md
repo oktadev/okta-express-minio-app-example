@@ -139,6 +139,7 @@ Configure the Okta tenant so that Security->Authenticators->Password has a rule 
 The app needs several entry points such as login, register, forgot-password and unlock. 
 ### login.handlebars
 Express the configuration of the sign-in widget in each of these handlebars with the appropriate `flow:<entry point>` option. The flow parameter is not needed for the login flow since its the default flow for the sign in widget. 
+
 ```js
    <script>             
       signInWidgetConfig = {
@@ -188,6 +189,8 @@ Express the configuration of the sign-in widget in each of these handlebars with
       });
                         
 ```
+![BRU_Login](https://github.com/deepamahalingam-okta/okta_commerce/blob/main/docs/screenshots/BRU_Login.png?raw=true)
+
 ### register.handlebars
 Specify `flow: 'signup'` to initialize the sign-in widget flows to start from the register or signup screens.
 ```js
@@ -203,8 +206,6 @@ Specify `flow: 'signup'` to initialize the sign-in widget flows to start from th
         authParams: {
             clientId: '0oa1jsl3bzUOCwZIj5d7',
             pkce: true,
-            // responseType: ['id_token', 'token'],
-            // scopes: ['openid', 'email', 'profile'],
         },
     };
     var fSignIn = new OktaSignIn(signInWidgetConfig); 
@@ -217,6 +218,8 @@ Specify `flow: 'signup'` to initialize the sign-in widget flows to start from th
     });
   </script>
 ```
+![BRU_Regiter](https://github.com/deepamahalingam-okta/okta_commerce/blob/main/docs/screenshots/BRU_Register.png?raw=true)
+
 ### forgot-password.handlebar
 Specify `flow: 'resetPassword'` to initialize the sign-in widget flows to start from the forgot-password screens.
 
@@ -245,6 +248,8 @@ Specify `flow: 'resetPassword'` to initialize the sign-in widget flows to start 
     });
   </script>
 ```
+![BRU_Reset](https://github.com/deepamahalingam-okta/okta_commerce/blob/main/docs/screenshots/BRU_Reset.png?raw=true)
+
 ### unlock.handlebars
 Specify `flow: 'unlockAccount'` to initialize the sign-in widget flows to start from the unlock screens.
 ```js
@@ -272,6 +277,7 @@ Specify `flow: 'unlockAccount'` to initialize the sign-in widget flows to start 
     });
   </script>
 ```
+![BRU_Unlock](https://github.com/deepamahalingam-okta/okta_commerce/blob/main/docs/screenshots/BRU_Unlock.png?raw=true)
 ## 10. Run The App
 
 Do the following steps to start the app server.
@@ -284,6 +290,7 @@ Do the following steps to start the app server.
   ```
 
   To see the app, open a browser window and visit http://localhost:3000
+
 
 ## 9.  Explore Further.
  
