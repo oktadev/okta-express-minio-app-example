@@ -45,16 +45,16 @@ Make a bucket called `minio-store` on play.minio.io. Use `mc mb` command to acco
 2. Store product image assets can be set to public readwrite. Use `mc policy` command to set the access policy on this bucket to "both". More details on the `mc policy` command can be found [here](https://docs.minio.io/docs/minio-client-complete-guide#policy).
 
    ```sh
-    mc policy public play/okta-store
+    mc policy set public play/okta-commerce
    ```
 
 3. Upload store product pictures into this bucket.  Use `mc cp`  command to do this. More details on the `mc cp` command can be found [here](https://docs.minio.io/docs/minio-client-complete-guide#cp).
 
    ```sh
-   mc cp ~/Downloads/Product-1.jpg play/okta-store/
-   mc cp ~/Downloads/Product-2.jpg play/okta-store/
-   mc cp ~/Downloads/Product-3.jpg play/okta-store/
-   mc cp ~/Downloads/Product-4.jpg play/okta-store/
+   mc cp ~/Downloads/Product-1.jpg play/okta-commerce/
+   mc cp ~/Downloads/Product-2.jpg play/okta-commerce/
+   mc cp ~/Downloads/Product-3.jpg play/okta-commerce/
+   mc cp ~/Downloads/Product-4.jpg play/okta-commerce/
    ```
 
    **NOTE** : We have already created a minio-store bucket on play.minio.io and copied the assets used in this example, into this bucket.
@@ -85,7 +85,7 @@ Set up a route for '/' in the minio-store.js file. Using the [listObjects]( http
 
 
 ```js
-var minioBucket = 'okta-store'
+var minioBucket = 'okta-commerce'
 
 app.get('/', function(req, res){
   var assets = [];
@@ -129,7 +129,144 @@ Loop through `assets_url` in `home.handlebars` to render the thumbnails of produ
  </div>
 ```
 
-## 8. Run The App
+## 8. Embedd the Okta Sign-In Widget
+The app needs several entry points such as login, register, forgot-password and unlock. 
+### login.handlebars
+Express the configuration of the sign-in widget in each of these handlebars with the appropriate `flow:<entry point>` option. The flow parameter is not needed for the login flow since its the default flow for the sign in widget. 
+```js
+   <script>             
+      signInWidgetConfig = {
+          // Enable or disable widget functionality with the following options. Some of these features require additional configuration in your Okta admin settings. Detailed information can be found here: https://github.com/okta/okta-signin-widget#okta-sign-in-widget
+
+          // Look and feel changes:
+          logo: '//okta.com', // Try changing "okta.com" to other domains, like: "workday.com", "splunk.com", or "delmonte.com"
+
+          language: 'en',   // Try: [fr, de, es, ja, zh-CN] Full list: https://github.com/okta/okta-signin-widget#language-and-text
+          i18n: {
+          //Overrides default text when using English. Override other languages by adding additional sections.
+          'en': {
+              'primaryauth.title': 'Sign In',   // Changes the sign in text
+              'primaryauth.submit': 'Sign In',  // Changes the sign in button
+              // More e.g. [primaryauth.username.placeholder,  primaryauth.password.placeholder, needhelp, etc.].
+              // Full list here: https://github.com/okta/okta-signin-widget/blob/master/packages/@okta/i18n/dist/properties/login.properties
+          }
+          },
+          // Changes to widget functionality
+          signOutLink: 'http://localhost:3000/logout',
+          features: {
+            rememberMe: true,                   // Setting to false will remove the checkbox to save 
+            router: true,                       // Leave this set to true for the API demo
+          },
+          baseUrl: 'http://localhost:3000',
+          flow: 'login',
+          el: '#okta-login-container',
+          clientId: '0oa1jsl3bzUOCwZIj5d7',
+          redirectUri: 'http://localhost:3000/callback',
+          authParams: {
+          issuer: 'https://dev-20163899.okta.com/oauth2/default',
+          responseType: ['code'],
+          useInteractionCodeFlow: true,
+          pkce: true,
+          // responseType: ['id_token', 'token'],
+          scopes: ['openid', 'email', 'profile'],
+          },
+      };
+
+      var oSignIn = new OktaSignIn(signInWidgetConfig); 
+      oSignIn.showSignInAndRedirect({
+          el: '#okta-login-container'
+      }).catch(function(error) {
+          // This function is invoked with errors the widget cannot recover from:
+          // Known errors: CONFIG_ERROR, UNSUPPORTED_BROWSER_ERROR
+          alert('Catch unknown errors here which widget does not support');
+      });
+                        
+```
+### register.handlebars
+Specify `flow: 'signup'` to initialize the sign-in widget flows to start from the register or signup screens.
+```js
+  <div id="okta-register-container">
+  </div>
+  <script>   
+    const signInWidgetConfig = {
+        flow: 'signup',
+        baseUrl: 'https://dev-20163899.okta.com',
+        useInteractionCodeFlow: true,
+        clientId: '0oa1jsl3bzUOCwZIj5d7',
+        redirectUri: 'http://localhost:3000/callback',
+        authParams: {
+            clientId: '0oa1jsl3bzUOCwZIj5d7',
+            pkce: true,
+            // responseType: ['id_token', 'token'],
+            // scopes: ['openid', 'email', 'profile'],
+        },
+    };
+    var fSignIn = new OktaSignIn(signInWidgetConfig); 
+    fSignIn.showSignInAndRedirect({
+        el: '#okta-register-container'
+    }).catch(function(error) {
+        // This function is invoked with errors the widget cannot recover from:
+        // Known errors: CONFIG_ERROR, UNSUPPORTED_BROWSER_ERROR
+        alert('Catch unknown errors here which widget does not support');
+    });
+  </script>
+```
+### forgot-password.handlebar
+Specify `flow: 'resetPassword'` to initialize the sign-in widget flows to start from the forgot-password screens.
+
+```js
+  <div id="okta-fp-container">
+  </div>
+  <script>     
+    const signInWidgetConfig = {
+        flow: 'resetPassword',
+        baseUrl: 'https://dev-20163899.okta.com',
+        useInteractionCodeFlow: true,
+        clientId: '0oa1jsl3bzUOCwZIj5d7',
+        redirectUri: 'http://localhost:3000/callback',
+        authParams: {
+            clientId: '0oa1jsl3bzUOCwZIj5d7',
+            pkce: true,
+        },
+    };
+    var fSignIn = new OktaSignIn(signInWidgetConfig); 
+    fSignIn.showSignInAndRedirect({
+          el: '#okta-fp-container'
+    }).catch(function(error) {
+        // This function is invoked with errors the widget cannot recover from:
+        // Known errors: CONFIG_ERROR, UNSUPPORTED_BROWSER_ERROR
+        alert('Catch unknown errors here which widget does not support');
+    });
+  </script>
+```
+### unlock.handlebars
+Specify `flow: 'unlockAccount'` to initialize the sign-in widget flows to start from the unlock screens.
+```js
+   <div id="okta-unlock-container">
+   </div>
+   <script>
+    const signInWidgetConfig = {
+        flow: 'unlockAccount',
+        baseUrl: 'https://dev-20163899.okta.com',
+        useInteractionCodeFlow: true,
+        clientId: '0oa1jsl3bzUOCwZIj5d7',
+        redirectUri: 'http://localhost:3000/callback',
+        authParams: {
+            clientId: '0oa1jsl3bzUOCwZIj5d7',
+            pkce: true,
+        },
+    };
+    var fSignIn = new OktaSignIn(signInWidgetConfig); 
+    fSignIn.showSignInAndRedirect({
+        el: '#okta-unlock-container'
+    }).catch(function(error) {
+        // This function is invoked with errors the widget cannot recover from:
+        // Known errors: CONFIG_ERROR, UNSUPPORTED_BROWSER_ERROR
+        alert('Catch unknown errors here which widget does not support');
+    });
+  </script>
+```
+## 9. Run The App
 
 Do the following steps to start the app server.
 

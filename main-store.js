@@ -29,6 +29,7 @@ var handlebars = require('express-handlebars').create({
 });
 
 // Instantiate a minioClient Object with an endPoint, port & keys.
+// This minio server runs locally. 
 var minioClient = new Minio.Client({
   endPoint: '192.168.1.7',
   port: 9000,
@@ -37,7 +38,7 @@ var minioClient = new Minio.Client({
   useSSL: false
 });
 
-var minioBucket = 'okta-store'
+var minioBucket = 'okta-commerce'
 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
@@ -196,6 +197,27 @@ app.get('/unlock', function(req, res){
     res.render('unlock', { url: assets });
   });
 });
+
+app.get('/forgot-password', function(req, res){
+  console.log("Calling fp")
+  var assets = [];
+  var objectsStream = minioClient.listObjects(minioBucket, '', true)
+  objectsStream.on('data', function(obj) {
+    console.log(obj);
+    // Lets construct the URL with our object name.
+    var publicUrl = minioClient.protocol + '//' + minioClient.host + ':' + minioClient.port + '/' + minioBucket + '/' + obj.name
+    assets.push(publicUrl);
+  });
+  objectsStream.on('error', function(e) {
+    console.log(e);
+  });
+  objectsStream.on('end', function(e) {
+    console.log(assets);
+    // Pass our assets array to our home.handlebars template.
+    res.render('forgot-password', { url: assets });
+  });
+});
+
 app.get('/', function(req,res) {
   console.log("Call slash")
   const { userContext } = req;
@@ -240,6 +262,7 @@ app.get('/register', function(req, res){
 });
 
 app.set('port', process.env.PORT || 3000);
+
 // Custom 404 page.
 app.use(function(req, res) {
   res.type('text/plain');

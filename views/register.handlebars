@@ -14,22 +14,6 @@
             <div id="okta-register-container">
             </div>
             <script>
-                    /*signInWidgetConfig = {
-                        
-                        flow: 'resetPassword',
-                        baseUrl: 'http://localhost:3000',
-                        el: '#okta-register-container',
-                        clientId: '0oa1jsl3bzUOCwZIj5d7',
-                        redirectUri: 'http://localhost:3000/callback',
-                        useInteractionCodeFlow: true,
-                        authParams: {
-                        issuer: 'https://dev-20163899.okta.com/oauth2/default',
-                        responseType: ['code'],
-                        pkce: true,
-                        // responseType: ['id_token', 'token'],
-                        scopes: ['openid', 'email', 'profile'],
-                        },
-                    };*/
                     const signInWidgetConfig = {
                         flow: 'signup',
                         baseUrl: 'https://dev-20163899.okta.com',
@@ -53,8 +37,6 @@
                         // Known errors: CONFIG_ERROR, UNSUPPORTED_BROWSER_ERROR
                         alert('Catch unknown errors here which widget does not support');
                     });
-                    
-
             </script>
         <hr>
  
