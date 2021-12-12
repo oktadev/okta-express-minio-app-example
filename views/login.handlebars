@@ -1,0 +1,113 @@
+ <!-- Page Content -->
+    <div class="container">
+
+        <!-- Jumbotron Header -->
+        <header class="jumbotron hero-spacer">
+            <h1>BRU Coffee Store </h1>
+            <p>Store your assets in a Minio Server or Amazon S3 and retrieve them inside your Bru Coffee Node.js Store Application</p>
+            <p><a class="btn btn-primary btn-large" style="background-color: #f14621; border: none;">Go!</a>
+            </p>
+        </header>
+
+        <hr>
+        
+        {{#if userContext}}
+            <h1 class="text-center">Hi {{userContext.userinfo.given_name}}!</h1>
+            <div class="d-flex justify-content-center"></div>
+
+            <!-- Title -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3>Latest Products</h3>
+                </div>
+            </div>
+            <!-- /.row -->
+
+            <!-- Page Features -->
+            <div class="row text-center">
+            {{#each url}}
+                <div class="col-md-3 col-sm-6 hero-feature">
+                    <div class="thumbnail">
+                        <img src="{{this}}" max-height=200 max-width=200 alt="">
+                        <div class="caption">
+                            <h3>Product Name</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                            <p>
+                                <a href="#" class="btn btn-primary" >Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}   
+            
+            </div>
+        <!-- /.row -->
+        {{else}}
+                
+                <h1 class="text-center">Please log in</h1>
+                <div id="okta-login-container">
+                </div>
+                <script>
+
+                        
+                        signInWidgetConfig = {
+                            // Enable or disable widget functionality with the following options. Some of these features require additional configuration in your Okta admin settings. Detailed information can be found here: https://github.com/okta/okta-signin-widget#okta-sign-in-widget
+                            // Look and feel changes:
+                            //logo: '//okta.com', // Try changing "okta.com" to other domains, like: "workday.com", "splunk.com", or "delmonte.com"
+                            language: 'en',                       // Try: [fr, de, es, ja, zh-CN] Full list: https://github.com/okta/okta-signin-widget#language-and-text
+                            i18n: {
+                            //Overrides default text when using English. Override other languages by adding additional sections.
+                            'en': {
+                                'primaryauth.title': 'Sign In',   // Changes the sign in text
+                                'primaryauth.submit': 'Sign In',  // Changes the sign in button
+                                // More e.g. [primaryauth.username.placeholder,  primaryauth.password.placeholder, needhelp, etc.].
+                                // Full list here: https://github.com/okta/okta-signin-widget/blob/master/packages/@okta/i18n/dist/properties/login.properties
+                            }
+                            },
+                            // Changes to widget functionality
+                            signOutLink: 'http://localhost:3000/logout',
+                            features: {
+                            registration: true,                 // Enable self-service registration flow
+                            rememberMe: true,                   // Setting to false will remove the checkbox to save username
+                            //multiOptionalFactorEnroll: true,  // Allow users to enroll in multiple optional factors before finishing the authentication flow.
+                            //selfServiceUnlock: true,          // Will enable unlock in addition to forgotten password
+                            //smsRecovery: true,                // Enable SMS-based account recovery
+                            //callRecovery: true,               // Enable voice call-based account recovery
+                            router: true,                       // Leave this set to true for the API demo
+                            },
+                            baseUrl: 'http://localhost:3000',
+                            flow: 'abc',
+                            el: '#okta-login-container',
+                            clientId: '0oa1jsl3bzUOCwZIj5d7',
+                            redirectUri: 'http://localhost:3000/callback',
+                            authParams: {
+                            issuer: 'https://dev-20163899.okta.com/oauth2/default',
+                            responseType: ['code'],
+                            useInteractionCodeFlow: true,
+                            pkce: true,
+                            // responseType: ['id_token', 'token'],
+                            scopes: ['openid', 'email', 'profile'],
+                            },
+                        };
+
+                        var oSignIn = new OktaSignIn(signInWidgetConfig); 
+
+                        oSignIn.showSignInAndRedirect({
+                            el: '#okta-login-container'
+                        }).catch(function(error) {
+                            // This function is invoked with errors the widget cannot recover from:
+                            // Known errors: CONFIG_ERROR, UNSUPPORTED_BROWSER_ERROR
+                            alert('Catch unknown errors here which widget does not support');
+                        });
+                        
+
+                </script>
+        {{/if}}
+        <hr>
+ 
+    </div>
+    <!-- /.container -->
+
+ 
+ 
+ 

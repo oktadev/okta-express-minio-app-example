@@ -1,0 +1,50 @@
+<!-- Page Content -->
+    <div class="container">
+
+        <!-- Jumbotron Header -->
+        <header class="jumbotron hero-spacer">
+            <h1>BRU Coffee Store Unlock </h1>
+            <p>Store your assets in a Minio Server or Amazon S3 and retrieve them inside your Bru Coffee Node.js Store Application</p>
+            <p><a class="btn btn-primary btn-large" style="background-color: #f14621; border: none;">Go!</a>
+            </p>
+        </header>
+
+        <hr>
+            <h1 class="text-center">Unlock Account</h1>
+            <div id="okta-unlock-container">
+            </div>
+            <script>
+                    const signInWidgetConfig = {
+                        flow: 'unlockAccount',
+                        baseUrl: 'https://dev-20163899.okta.com',
+                        useInteractionCodeFlow: true,
+                        clientId: '0oa1jsl3bzUOCwZIj5d7',
+                        redirectUri: 'http://localhost:3000/callback',
+                        authParams: {
+                            clientId: '0oa1jsl3bzUOCwZIj5d7',
+                            pkce: true,
+                            // responseType: ['id_token', 'token'],
+                            // scopes: ['openid', 'email', 'profile'],
+                        },
+                    };
+
+                    var fSignIn = new OktaSignIn(signInWidgetConfig); 
+
+                    fSignIn.showSignInAndRedirect({
+                        el: '#okta-unlock-container'
+                    }).catch(function(error) {
+                        // This function is invoked with errors the widget cannot recover from:
+                        // Known errors: CONFIG_ERROR, UNSUPPORTED_BROWSER_ERROR
+                        alert('Catch unknown errors here which widget does not support');
+                    });
+                    
+
+            </script>
+        <hr>
+ 
+    </div>
+    <!-- /.container -->
+
+ 
+ 
+ 
