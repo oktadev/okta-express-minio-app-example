@@ -3,7 +3,7 @@
 
 This example will guide you through the code to build a simple Node.js Shopping App with the Okta's Customer Hosted Sign-In Widget and Minio Server to host the store's assets.
 
-![BRU_app](https://github.com/deepamahalingam-okta/okta_commerce/blob/master/docs/screenshots/BRU_app.png?raw=true)
+![BRU_app](https://github.com/deepamahalingam-okta/okta_commerce/blob/master/docs/screenshots/BRU_app.png)
 
 We will use [Minio Javascript Client SDK](https://docs.minio.io/docs/javascript-client-quickstart-guide) to fetch the application's image assets from the Minio Server.
 
