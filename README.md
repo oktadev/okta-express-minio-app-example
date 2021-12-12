@@ -128,8 +128,14 @@ Loop through `assets_url` in `home.handlebars` to render the thumbnails of produ
   {{/each}}   
  </div>
 ```
+## 8. Set up Okta Tenant
+Configure the Okta tenant so that Security->Profile Enrollment -> Self-Service Registration is enabled for your application.
+![SSPR](https://github.com/deepamahalingam-okta/okta_commerce/blob/main/docs/screenshots/SSPR.png?raw=true)
 
-## 8. Embedd the Okta Sign-In Widget
+Configure the Okta tenant so that Security->Authenticators->Password has a rule that allows for password unlock for your application.
+![Unlock](https://github.com/deepamahalingam-okta/okta_commerce/blob/main/docs/screenshots/Unlock.png?raw=true)
+
+## 9. Embedd the Okta Sign-In Widget
 The app needs several entry points such as login, register, forgot-password and unlock. 
 ### login.handlebars
 Express the configuration of the sign-in widget in each of these handlebars with the appropriate `flow:<entry point>` option. The flow parameter is not needed for the login flow since its the default flow for the sign in widget. 
@@ -266,7 +272,7 @@ Specify `flow: 'unlockAccount'` to initialize the sign-in widget flows to start 
     });
   </script>
 ```
-## 9. Run The App
+## 10. Run The App
 
 Do the following steps to start the app server.
 
