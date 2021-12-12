@@ -22,7 +22,6 @@ var self
  
 
 const session = require('express-session');
-//const { ExpressOIDC } = require('@okta/oidc-middleware');
 
 // Set up handlebars view engine.//
 var handlebars = require('express-handlebars').create({
@@ -38,7 +37,7 @@ var minioClient = new Minio.Client({
   useSSL: false
 });
 
-var minioBucket = 'minio-store'
+var minioBucket = 'okta-store'
 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
@@ -74,8 +73,6 @@ app.get('/home', function(req, res){
 });
 app.get('/login', function(req,res) {
   const { userContext } = req;
-  // res.render('home', { userContext });
-
   var assets = [];
   var objectsStream = minioClient.listObjects(minioBucket, '', true)
   objectsStream.on('data', function(obj) {
@@ -95,9 +92,6 @@ app.get('/login', function(req,res) {
 });
 
 app.get('/logout', function(req, res) {
- // const { userContext } = req;
-  // res.render('home', { userContext });
-
   var assets = [];
   var objectsStream = minioClient.listObjects(minioBucket, '', true)
   objectsStream.on('data', function(obj) {

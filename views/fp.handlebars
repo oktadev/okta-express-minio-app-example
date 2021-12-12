@@ -3,33 +3,18 @@
 
         <!-- Jumbotron Header -->
         <header class="jumbotron hero-spacer">
-            <h1>BRU Coffee Store </h1>
-            <p>Store your assets in a Minio Server or Amazon S3 and retrieve them inside your Bru Coffee Node.js Store Application</p>
+            <h1>BRU Coffee Store Reset Password</h1>
+            <p>Authenticate with Okta Sign-In Widget. Store your assets in a Minio Server or Amazon S3 and retrieve them inside your BRU Coffee Node.js Store Application</p>            
             <p><a class="btn btn-primary btn-large" style="background-color: #f14621; border: none;">Go!</a>
             </p>
         </header>
 
         <hr>
-            <h1 class="text-center">Please Register</h1>
+            <h1 class="text-center">Reset Password</h1>
             <div id="okta-register-container">
             </div>
             <script>
-                    /*signInWidgetConfig = {
-                        
-                        flow: 'resetPassword',
-                        baseUrl: 'http://localhost:3000',
-                        el: '#okta-register-container',
-                        clientId: '0oa1jsl3bzUOCwZIj5d7',
-                        redirectUri: 'http://localhost:3000/callback',
-                        useInteractionCodeFlow: true,
-                        authParams: {
-                        issuer: 'https://dev-20163899.okta.com/oauth2/default',
-                        responseType: ['code'],
-                        pkce: true,
-                        // responseType: ['id_token', 'token'],
-                        scopes: ['openid', 'email', 'profile'],
-                        },
-                    };*/
+                    
                     const signInWidgetConfig = {
                         flow: 'resetPassword',
                         baseUrl: 'https://dev-20163899.okta.com',
