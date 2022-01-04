@@ -40,7 +40,7 @@ Make a bucket called `minio-store` on play.minio.io. Use `mc mb` command to acco
 
 
    ```sh
-    mc mb play/minio-store
+    mc mb play/okta-commerce
    ```
 2. Store product image assets can be set to public readwrite. Use `mc policy` command to set the access policy on this bucket to "both". More details on the `mc policy` command can be found [here](https://docs.minio.io/docs/minio-client-complete-guide#policy).
 
