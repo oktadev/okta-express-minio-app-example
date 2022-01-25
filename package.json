@@ -1,5 +1,5 @@
 {
-  "name": "minio-store",
+  "name": "okta_commerce",
   "version": "1.0.0",
   "description": "Minio Nodejs Sample App",
   "main": "index.js",
