@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-const session = require('express-session');
+var session = require('express-session');
 var assets = require('./services/minio-handler');
 
 // Set up handlebars view engine
@@ -13,13 +13,12 @@ app.set('view engine', 'handlebars');
 
 app.use(express.static(__dirname + '/public'));
 app.use(session({
-  secret: 'this should be secure',
+  secret: 'look the other way while I type this',
   resave: true,
   saveUninitialized: false
 }));
 
 // Routes for the app
-
 app.get('/', function(req, res){
   const { userContext } = req;
   res.render('home', { url: assets, userContext });
@@ -50,11 +49,14 @@ app.get('/register', function(req, res){
   res.render('register', { url: assets });
 });
 
+app.get('/callback', function(req, res){
+  res.render('home', { url: assets });
+});
+
 app.set('port', process.env.PORT || 3000);
 
 
 // Custom 404 page
-
 app.use(function(req, res) {
   res.type('text/plain');
   res.status(404);
@@ -62,15 +64,13 @@ app.use(function(req, res) {
 });
 
 // Custom 500 page
-
 app.use(function(err, req, res, next) {
   res.type('text/plain');
   res.render('500');
 });
 
 // Start the app
-
 app.listen(app.get('port'), function(){
   console.log('App started on http://localhost:' + app.get('port'));
-  console.log('Press Ctrl + c to terminate');
+  console.log('Press ctrl + c to terminate');
 });
