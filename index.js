@@ -30,26 +30,23 @@ app.get('/login', function(req, res){
 });
 
 app.get('/logout', function(req, res){
-  const { userContext } = req;
   res.render('login', { url: assets });
 });
 
 app.get('/forgot-password', function(req, res){
-  const { userContext } = req;
   res.render('forgot-password', { url: assets });
 });
 
 app.get('/unlock', function(req, res){
-  const { userContext } = req;
   res.render('unlock', { url: assets });
 });
 
 app.get('/register', function(req, res){
-  const { userContext } = req;
   res.render('register', { url: assets });
 });
 
 app.get('/callback', function(req, res){
+  // exchange code (req.query.code) for tokens
   res.render('home', { url: assets });
 });
 

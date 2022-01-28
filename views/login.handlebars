@@ -36,25 +36,18 @@
                 </div>
                 <script>
                     signInWidgetConfig = {
-                        // Enable or disable widget functionality with the following options. Some of these features require additional configuration in your Okta admin settings. Detailed information can be found here: https://github.com/okta/okta-signin-widget#okta-sign-in-widget
-                        // Look and feel changes:
-                        //logo: '//okta.com', // Try changing "okta.com" to other domains, like: "workday.com", "splunk.com", or "delmonte.com"
-                        language: 'en',                       // Try: [fr, de, es, ja, zh-CN] Full list: https://github.com/okta/okta-signin-widget#language-and-text
+                        language: 'en',
                         i18n: {
-                        //Overrides default text when using English. Override other languages by adding additional sections.
                         'en': {
-                            'primaryauth.title': 'Sign In',   // Changes the sign in text
-                            'primaryauth.submit': 'Sign In',  // Changes the sign in button
-                            // More e.g. [primaryauth.username.placeholder,  primaryauth.password.placeholder, needhelp, etc.].
-                            // Full list here: https://github.com/okta/okta-signin-widget/blob/master/packages/@okta/i18n/dist/properties/login.properties
+                            'primaryauth.title': 'Sign In',
+                            'primaryauth.submit': 'Sign In',
                         }
                         },
-                        // Changes to widget functionality
                         signOutLink: 'http://localhost:3000/logout',
                         features: {
-                        registration: true,                 // Enable self-service registration flow
-                        rememberMe: true,                   // Setting to false will remove the checkbox to save username
-                        router: true,                       // Leave this set to true for the API demo
+                            registration: true,
+                            rememberMe: true,
+                            router: true,
                         },
                         baseUrl: 'http://localhost:3000',
                         flow: 'login',
@@ -73,8 +66,6 @@
                     oSignIn.showSignInAndRedirect({
                         el: '#okta-login-container'
                     }).catch(function(error) {
-                        // This function is invoked with errors the widget cannot recover from:
-                        // Known errors: CONFIG_ERROR, UNSUPPORTED_BROWSER_ERROR
                         alert('Catch unknown errors here which widget does not support');
                     });
                 </script>

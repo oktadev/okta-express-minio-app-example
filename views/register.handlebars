@@ -17,8 +17,6 @@
                 fSignIn.showSignInAndRedirect({
                     el: '#okta-register-container'
                 }).catch(function(error) {
-                    // This function is invoked with errors the widget cannot recover from:
-                    // Known errors: CONFIG_ERROR, UNSUPPORTED_BROWSER_ERROR
                     alert('Catch unknown errors here which widget does not support');
                 });
             </script>
