@@ -1,15 +1,16 @@
             <h1 class="text-center">Please Register</h1>
             <div id="okta-register-container">
             </div>
+            <script src="../js/okta-config.js"></script>
             <script>
                 const signInWidgetConfig = {
                     flow: 'signup',
-                    baseUrl: 'https://dev-20163899.okta.com',
+                    baseUrl: credentials.domain,
                     useInteractionCodeFlow: true,
-                    clientId: '0oa1jsl3bzUOCwZIj5d7',
-                    redirectUri: 'http://localhost:3000/callback',
+                    clientId: credentials.clientId,
+                    redirectUri: window.location.origin + '/callback',
                     authParams: {
-                        clientId: '0oa1jsl3bzUOCwZIj5d7',
+                        clientId: credentials.clientId,
                         pkce: true,
                     },
                 };

@@ -42,7 +42,7 @@ You will be prompted to select the following options:
 - Redirect URI: `http://localhost:3000/callback`
 - Logout Redirect URI: `http://localhost:3000/`
 
-Run `cat .okta.env` (or `.okta.env` on Windows) to see the issuer and credentials for your app. Update `views/forgot-password.js`, `views/login.js`, `views/register.js`, and `views/unlock.js` with your Okta settings.
+Run `cat .okta.env` (or `.okta.env` on Windows) to see the issuer and credentials for your app. Update `public/js/okta-config.js` with your Okta settings.
 
 
 ### Set Up Your MinIO Bucket
