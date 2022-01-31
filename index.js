@@ -52,20 +52,6 @@ app.get('/callback', function(req, res){
 
 app.set('port', process.env.PORT || 3000);
 
-
-// Custom 404 page
-app.use(function(req, res) {
-  res.type('text/plain');
-  res.status(404);
-  res.render('404');
-});
-
-// Custom 500 page
-app.use(function(err, req, res, next) {
-  res.type('text/plain');
-  res.render('500');
-});
-
 // Start the app
 app.listen(app.get('port'), function(){
   console.log('App started on http://localhost:' + app.get('port'));
