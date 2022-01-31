@@ -1,23 +1,23 @@
-            <h1 class="text-center">Please Register</h1>
-            <div id="okta-register-container">
-            </div>
-            <script src="../js/okta-config.js"></script>
-            <script>
-                const signInWidgetConfig = {
-                    flow: 'signup',
-                    baseUrl: credentials.domain,
-                    useInteractionCodeFlow: true,
-                    clientId: credentials.clientId,
-                    redirectUri: window.location.origin + '/callback',
-                    authParams: {
-                        clientId: credentials.clientId,
-                        pkce: true,
-                    },
-                };
-                var fSignIn = new OktaSignIn(signInWidgetConfig); 
-                fSignIn.showSignInAndRedirect({
-                    el: '#okta-register-container'
-                }).catch(function(error) {
-                    alert('Catch unknown errors here which widget does not support');
-                });
-            </script>
+<h1 class="text-center">Please Register</h1>
+<div id="okta-register-container">
+</div>
+<script src="../js/okta-config.js"></script>
+<script>
+  const signInWidgetConfig = {
+    flow: 'signup',
+    baseUrl: credentials.domain,
+    useInteractionCodeFlow: true,
+    clientId: credentials.clientId,
+    redirectUri: window.location.origin + '/callback',
+    authParams: {
+      clientId: credentials.clientId,
+      pkce: true,
+    },
+  };
+  var fSignIn = new OktaSignIn(signInWidgetConfig);
+  fSignIn.showSignInAndRedirect({
+    el: '#okta-register-container'
+  }).catch(function(error) {
+    alert('Catch unknown errors here which widget does not support');
+  });
+</script>

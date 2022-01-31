@@ -1,27 +1,27 @@
-    {{#if userContext}}
-        <h1 class="text-center">Hi {{userContext.userinfo.given_name}}!</h1>
-        <div class="d-flex justify-content-center"></div>
-    {{/if}}
+{{#if userContext}}
+<h1 class="text-center">Hi {{userContext.userinfo.given_name}}!</h1>
+<div class="d-flex justify-content-center"></div>
+{{/if}}
 
-    <div class="row">
-        <div class="col-lg-12">
-            <h3>Latest Products</h3>
-        </div>
-    </div>
+<div class="row">
+<div class="col-lg-12">
+  <h3>Latest Products</h3>
+</div>
+</div>
 
-    <div class="row text-center">
-    {{#each url}}
-        <div class="col-md-3 col-sm-6 hero-feature">
-            <div class="thumbnail">
-                <img src="{{this}}" max-height=200 max-width=200 alt="">
-                <div class="caption">
-                    <h3>Product Name</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                    <p>
-                        <a href="#" class="btn btn-primary" >Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    {{/each}}   
+<div class="row text-center">
+{{#each url}}
+  <div class="col-md-3 col-sm-6 hero-feature">
+    <div class="thumbnail">
+      <img src="{{this}}" max-height=200 max-width=200 alt="">
+      <div class="caption">
+        <h3>Product Name</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <p>
+          <a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+        </p>
+      </div>
     </div>
+  </div>
+{{/each}}
+</div>

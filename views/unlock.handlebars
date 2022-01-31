@@ -1,25 +1,25 @@
-            <h1 class="text-center">Unlock Account</h1>
-            <div id="okta-unlock-container">
-            </div>
-            <script src="../js/okta-config.js"></script>
-            <script>
-                const signInWidgetConfig = {
-                    flow: 'unlockAccount',
-                    baseUrl: credentials.domain,
-                    useInteractionCodeFlow: true,
-                    clientId: credentials.clientId,
-                    redirectUri: window.location.origin + '/callback',
-                    authParams: {
-                        clientId: credentials.clientId,
-                        pkce: true,
-                    },
-                };
-                var fSignIn = new OktaSignIn(signInWidgetConfig); 
-                fSignIn.showSignInAndRedirect({
-                    el: '#okta-unlock-container'
-                }).catch(function(error) {
-                    // This function is invoked with errors the widget cannot recover from:
-                    // Known errors: CONFIG_ERROR, UNSUPPORTED_BROWSER_ERROR
-                    alert('Catch unknown errors here which widget does not support');
-                });
-            </script>
+<h1 class="text-center">Unlock Account</h1>
+<div id="okta-unlock-container">
+</div>
+<script src="../js/okta-config.js"></script>
+<script>
+  const signInWidgetConfig = {
+    flow: 'unlockAccount',
+    baseUrl: credentials.domain,
+    useInteractionCodeFlow: true,
+    clientId: credentials.clientId,
+    redirectUri: window.location.origin + '/callback',
+    authParams: {
+      clientId: credentials.clientId,
+      pkce: true,
+    },
+  };
+  var fSignIn = new OktaSignIn(signInWidgetConfig);
+  fSignIn.showSignInAndRedirect({
+    el: '#okta-unlock-container'
+  }).catch(function(error) {
+    // This function is invoked with errors the widget cannot recover from:
+    // Known errors: CONFIG_ERROR, UNSUPPORTED_BROWSER_ERROR
+    alert('Catch unknown errors here which widget does not support');
+  });
+</script>
