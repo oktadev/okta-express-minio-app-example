@@ -21,7 +21,7 @@ git clone https://github.com/deepamahalingam-okta/okta_commerce.git
 cd  okta_commerce
 ```
 
-### Create an OIDC Application in Okta
+### Create a Web Application in Okta
 
 Create a free developer account with the following command using the [Okta CLI](https://cli.okta.com):
 
