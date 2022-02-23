@@ -38,7 +38,7 @@ okta apps create
 ```
 
 You will be prompted to select the following options:
-- Type of Application: **2: Single Page App**
+- Type of Application: **1: Web**
 - Redirect URI: `http://localhost:3000/callback`
 - Logout Redirect URI: `http://localhost:3000/`
 
