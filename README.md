@@ -53,7 +53,7 @@ Run `cat .okta.env` (or `.okta.env` on Windows) to see the issuer and credential
 mc mb play/okta-commerce
 ```
 
-2. Store product image assets can be set to public readwrite. Use `mc policy` command to set the access policy on this bucket to "both". 
+2. Store product image assets can be set to public readwrite. Use `mc policy` command to set the access policy on this bucket to "public". 
 
 ```sh
 mc policy set public play/okta-commerce
