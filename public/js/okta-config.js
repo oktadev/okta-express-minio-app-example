@@ -1,4 +1,4 @@
 const credentials = {
-    domain: 'https://{yourOktaDomain}',
-    clientId: '{clientId}'
+  domain: 'https://{yourOktaDomain}',
+  clientId: '{clientId}'
 };
