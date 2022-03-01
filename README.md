@@ -4,7 +4,6 @@ This tutorial shows your how to build a basic Node.js Shopping App with Express.
 
 Please read [How to Build a Basic Shopping App with Node.js and MinIO]() to step through the tutorial.
 
- 
 ## Prerequisites
 
 * [Node.js](https://nodejs.org/en/)
@@ -17,8 +16,8 @@ Please read [How to Build a Basic Shopping App with Node.js and MinIO]() to step
 To install this example application, run the following commands:
 
 ```sh
-git clone https://github.com/deepamahalingam-okta/okta_commerce.git
-cd  okta_commerce
+git clone https://github.com/oktadev/okta-express-minio-app-example.git
+cd okta-express-minio-app-example
 ```
 
 ### Create an OIDC Application in Okta
@@ -97,7 +96,7 @@ npm install
 npm start
 ```
 
-To see the app, open a browser window and visit http://localhost:3000
+To see the app, open a browser window and visit http://localhost:3000.
 
 
 ## Help
