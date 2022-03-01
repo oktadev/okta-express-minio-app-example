@@ -6,10 +6,10 @@ Please read [How to Build a Basic Shopping App with Node.js and MinIO]() to step
 
 ## Prerequisites
 
-* [Node.js](https://nodejs.org/en/)
+* [Node.js](https://nodejs.org/en/) v16.14.0
 * [MinIO Client (mc)](https://docs.minio.io/docs/minio-client-quickstart-guide)
 * [Minio Server](https://docs.min.io/)
-* [Okta CLI](https://cli.okta.com/)
+* [Okta CLI](https://cli.okta.com/) v0.10.0
 
 ## Getting Started
 
